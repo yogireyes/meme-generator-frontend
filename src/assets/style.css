@@ -1,0 +1,83 @@
+body{
+    background-color: #eeeeee;
+}
+a{
+  text-decoration: none;
+}
+div.progress{
+    height: 3px;
+}
+div.progress .progress-bar{
+    background-color: #006dac;
+}
+.img_container {
+	-webkit-column-count: 4;
+	-moz-column-count: 4;
+	column-count: 4;
+	-webkit-column-width: 25%;
+	-moz-column-width: 25%;
+	column-width: 25%;
+}
+.img_container .query_img {
+	-webkit-transition: all 350ms ease;
+	transition: all 350ms ease;
+    margin-bottom: 15px;
+	cursor: pointer;
+}
+@media (max-width: 768px) {
+	.img_container {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+		-webkit-column-width: 100%;
+		-moz-column-width: 100%;
+		column-width: 100%;
+	}
+}
+@media (max-width: 576px) {
+	.img_container {
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+		-webkit-column-width: 100%;
+		-moz-column-width: 100%;
+		column-width: 100%;
+	}
+}
+input[type=color]{
+	width: 50px;
+	height: 25px;
+	border: 0;
+}
+.padding_field{
+	width: 100px;
+}
+.draggable-text:hover {
+	cursor: grab;
+}
+.draggable-text:active {
+	cursor: grabbing;
+}
+.overlay{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.logout{
+	cursor: pointer;
+}
+.image-container {
+	position: relative;
+	display: inline-block;
+  }
+.floating_btns {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+.floating_btns span{
+	cursor: pointer;
+}
