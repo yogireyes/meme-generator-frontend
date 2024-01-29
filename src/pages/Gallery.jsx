@@ -77,11 +77,11 @@ function Gallery(){
                                                     alt={image.text}
                                                     className="img-fluid rounded query_img"
                                                 />
-                                                <div className="floating_btns" onClick={() => handleDelete(image.id)}>
+                                                <div className="floating_btns">
                                                     <span className="me-2" onClick={() => handleShowModal(index)}>
                                                         <i className="fas fa-eye text-info"></i>
                                                     </span>
-                                                    <span>
+                                                    <span onClick={() => handleDelete(image.id)}>
                                                         <i className="fas fa-trash-alt text-danger"></i>
                                                     </span>
                                                 </div>
