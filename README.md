@@ -1,7 +1,7 @@
 ## Meme-Generator - Frontend
 
-#### Live at: https://muhammadabir64-meme-generator.netlify.app
-#### Backend repository: https://github.com/muhammadabir64/meme-generator-backend
+#### Live at: https://yogireyes-meme-generator.netlify.app
+#### Backend repository: https://github.com/yogireyes/meme-generator-backend
 
 * Requirements:
   - NodeJS v20.x
@@ -9,7 +9,7 @@
 ## how to setup?
 1. Clone Repository:
 ```
-https://github.com/muhammadabir64/meme-generator-frontend
+https://github.com/yogireyes/meme-generator-frontend
 ```
 2. Install Dependencies:
 ```
