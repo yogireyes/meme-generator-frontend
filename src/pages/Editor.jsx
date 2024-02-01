@@ -123,7 +123,7 @@ function Editor() {
     setIsDraggingText(false);
   };
 
-  const sendToBackend = async () => {
+  const saveHandler = async () => {
     try {
       const response = await axios.post(`${SERVER_URI}/process_image`, {
         image: parsedImageData.webformatURL,
@@ -171,14 +171,45 @@ function Editor() {
           } catch (error) {
             console.error('Error sending data to backend:', error);
           }
-
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(imageBlob);
-          link.download = originalFilename;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
         });
+      } else {
+        console.error('Image processing failed:', processedImage.error);
+      }
+    } catch (error) {
+      console.error('Error processing image on the server:', error);
+    }
+  };
+
+  const exportHandler = async () => {
+    try {
+      const response = await axios.post(`${SERVER_URI}/process_image`, {
+        image: parsedImageData.webformatURL,
+        text,
+        font_size: fontSize,
+        font_color: fontColor,
+        background_color: fontBackgroundColor,
+        background_enabled: isBackgroundChecked,
+        is_bold: isBold,
+        is_italic: isItalic,
+        padding_x: paddingX,
+        padding_y: paddingY,
+        overlay_enabled: isOverlayChecked,
+        overlay_intensity: overlayColorIntensity,
+        text_position: {
+          x: textPosition.x / parsedImageData.webformatWidth,
+          y: textPosition.y / parsedImageData.webformatHeight,
+        },
+      });
+      const processedImage = response.data;
+      if (processedImage.status === 'success') {
+        const originalFilename = processedImage.img.split('/').pop();
+        const imageBlob = await fetch(processedImage.img).then(res => res.blob());
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(imageBlob);
+        link.download = originalFilename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } else {
         console.error('Image processing failed:', processedImage.error);
       }
@@ -278,7 +309,9 @@ function Editor() {
             </div>
             <div className="col-12 text-center">
                 <hr className="text-muted" />
-                <button type="button" className="btn btn-success" onClick={sendToBackend}>Export <i className="fas fa-cloud-download-alt"></i></button>
+                <button type="button" className="btn btn-success" onClick={saveHandler}>Save <i className="fas fa-save"></i></button>
+                <small className="text-muted"> or </small>
+                <button type="button" className="btn btn-primary" onClick={exportHandler}>Export <i className="fas fa-cloud-download-alt"></i></button>
             </div>
           </div>
         </div>
